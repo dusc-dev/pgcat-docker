@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Arguments:
 #   $1: A string in the format "username1:password1;username2:password2;..."
 # Output:
