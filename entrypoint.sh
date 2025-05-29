@@ -60,7 +60,7 @@ generate_users_toml() {
     password="${user_pass_part#*:}"  # Everything after the first colon
 
     # Start TOML section for this user
-    printf -v toml_output '%s[pools.postgres.users.%s]\n' "$toml_output" "$index"
+    printf -v toml_output '%s[pools.%s.users.%s]\n' "$POOL_NAME" "$toml_output" "$index"
     printf -v toml_output '%s    username = "%s"\n' "$toml_output" "$username"
     printf -v toml_output '%s    password = "%s"\n' "$toml_output" "$password"
 
@@ -218,7 +218,8 @@ generate_pool_config() {
     done
 
     # Use printf to safely construct the final multi-line TOML output
-    printf -v toml_output '[pools.postgres.shards.0]\nservers = [\n%s\n]\ndatabase = "%s"\n' \
+    printf -v toml_output '[pools.%s.shards.0]\nservers = [\n%s\n]\ndatabase = "%s"\n' \
+        "$POOL_NAME" \
         "$servers_toml_lines" \
         "$database_name"
 

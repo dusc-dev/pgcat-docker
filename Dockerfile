@@ -25,6 +25,7 @@ ENV QUERY_PARSER_READ_WRITE_SPLITTING=true
 ENV PRIMARY_READS_ENABLED=true
 ENV SERVERS="mydb_prod#db1.example.com:5432:primary;db2.example.com:5433:replica;db3.example.com:5434:replica"
 ENV USERS="username1:password1#pool_size=5,statement_timeout=0;username2:password2#pool_size=6,statement_timeout=10"
+ENV POOL_NAME="postgres"
 
 COPY config.template.toml /etc/pgcat/config.template.toml
 COPY entrypoint.sh /etc/pgcat/entrypoint.sh
